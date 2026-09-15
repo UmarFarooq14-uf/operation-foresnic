@@ -1,0 +1,69 @@
+name: Validate Repository Structure
+
+# CI for the Operation Silent Ledger forensics submission.
+#   Job 1 (structure)        - checks every required deliverable is present.
+#   Job 2 (reproducibility)  - rebuilds the whole case on a clean runner and
+#                              proves the pipeline is reproducible: evidence is
+#                              regenerated, the archive re-sealed, hashes verify,
+#                              artefacts are extracted and the archive cracks.
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  structure:
+    name: Deliverable structure check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies (PDF/screenshot generators)
+        run: python3 -m pip install -r requirements.txt
+      - name: Rebuild generated deliverables
+        run: |
+          python3 scripts/generate_evidence.py
+          bash    scripts/seal_archive.sh
+          python3 scripts/hash_files.py
+          python3 scripts/search_media.py
+          python3 scripts/crack_zip.py
+          python3 scripts/make_report_pdf.py
+          python3 scripts/make_coc_pdf.py
+          python3 scripts/make_screenshots.py
+      - name: Validate required files & folders
+        run: python3 scripts/validate_structure.py
+
+  reproducibility:
+    name: Rebuild & verify pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate evidence and re-seal the archive
+        run: |
+          python3 scripts/generate_evidence.py
+          bash    scripts/seal_archive.sh
+      - name: Hash acquired media (SHA-256)
+        run: python3 scripts/hash_files.py
+      - name: Verify integrity manifest
+        run: sha256sum -c hashes/SHA256SUMS.txt
+      - name: Run media search & artefact extraction
+        run: python3 scripts/search_media.py
+      - name: Crack the protected archive (dictionary attack)
+        run: python3 scripts/crack_zip.py
+      - name: Assert the password was recovered
+        run: grep -q "PASSWORD RECOVERED" logs/cracking.log
+      - name: Upload run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forensic-logs
+          path: logs/
