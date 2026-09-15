@@ -1,0 +1,11 @@
+# Runtime dependencies for Operation Silent Ledger.
+# The CORE forensic pipeline (generate, seal, hash, verify, search, crack,
+# validate) uses only the Python standard library + the system `zip`/`unzip`
+# and `sha256sum` tools - so it runs with no pip installs at all.
+#
+# These packages are needed ONLY for the document/screenshot generators:
+#   scripts/make_report_pdf.py   -> reportlab
+#   scripts/make_coc_pdf.py      -> reportlab
+#   scripts/make_screenshots.py  -> pillow
+reportlab>=3.6
+pillow>=9.0
