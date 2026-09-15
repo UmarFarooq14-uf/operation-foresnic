@@ -1,0 +1,20 @@
+# Staging plaintext for the protected archive - must NEVER be committed.
+# Only evidence/protected/exfil_archive.zip (the encrypted archive) ships.
+_stage/
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# John the Ripper intermediate (from crack_with_john.sh)
+logs/*.hash
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
