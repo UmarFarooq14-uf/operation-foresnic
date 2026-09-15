@@ -1,0 +1,6 @@
+EXTORTION - PAYMENT INSTRUCTIONS
+Amount   : 3.5 BTC (approx.)
+BTC       : 1SiLentLedgerTestOnlyDummyAddr000
+XMR (alt) : 48SiLentLedgerTestOnlyDummyMoneroDoNotUseSiLentLedgerTestOnlyDummyMoneroDoNotUseSiLentLedgerTes
+Deadline  : 72h from 2025-06-20 20:05 IST
+Fallback  : publish full dataset via leakwall7z2xj4qd.onion; co-sell with shadowmkt (30%)
