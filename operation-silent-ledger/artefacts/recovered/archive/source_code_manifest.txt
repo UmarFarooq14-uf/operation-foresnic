@@ -1,0 +1,7 @@
+VANTAGE CRM - BACKEND SOURCE (COPY) - CONFIDENTIAL / PROPRIETARY
+---------------------------------------------------------------
+auth-service/     : login, session, password-reset (Java/Spring)
+billing-service/  : invoicing + payment-gateway adapters
+crm-core/         : customer + orders domain model
+NOTE: exported without authorisation from git.vantage.internal on 2025-06-18.
+This manifest stands in for the proprietary source; no real code is included.
