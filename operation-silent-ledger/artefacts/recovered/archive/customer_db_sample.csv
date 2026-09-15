@@ -1,0 +1,7 @@
+customer_id,full_name,email,phone,password_md5,city
+VC10001,Ravi Kumar,ravi.kumar@example.test,+91-98XXXX0001,5f4dcc3b5aa765d61d8327deb882cf99,Bengaluru
+VC10002,Sana Sheikh,sana.sheikh@example.test,+91-98XXXX0002,e10adc3949ba59abbe56e057f20f883e,Mumbai
+VC10003,John Doe,john.doe@example.org,+91-98XXXX0003,25f9e794323b453885f5181f1b624d0b,Delhi
+VC10004,Aisha Khan,aisha.khan@example.test,+91-98XXXX0004,d8578edf8458ce06fbc5bb76a58c5ca4,Hyderabad
+VC10005,Mary Major,mary.major@example.com,+91-98XXXX0005,827ccb0eea8a706c4c34a16891f84e7b,Pune
+VC10006,Vikram Rao,vikram.rao@example.test,+91-98XXXX0006,0d107d09f5bbe40cade3de5c71e9e9b7,Chennai
